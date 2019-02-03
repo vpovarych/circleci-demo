@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Requirements
           command: |
-            python3 -m vensource local
+            python3 -m venv local
             source local/bin/activate
             pip install --upgrade --requirement requirements.txt
 
