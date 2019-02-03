@@ -45,7 +45,7 @@ upload: unittest
 test:
 	./test-environment.sh $(ENV)
 
-deploy:
+deploy: upload
 	./deploy-new-version.sh $(ENV)
 
 clean:
