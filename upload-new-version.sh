@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -e
 application=target-app
 bucket=cakedisk-api
 tag=$(date +%F)-$(git rev-parse --short HEAD)

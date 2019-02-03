@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 environment=${1:-staging}
 site="http://${environment}.aawrp5rccf.us-west-2.elasticbeanstalk.com/"
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 environment=${1:-staging}
 application=${2:-target-app}
 count_max=${3:-30}
