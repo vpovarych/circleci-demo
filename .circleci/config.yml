@@ -1,0 +1,75 @@
+# Python CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
+      - image: circleci/python:3.6.1
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: Requirements
+          command: |
+            python3 -m vensource local
+            source local/bin/activate
+            pip install --upgrade --requirement requirements.txt
+
+      - save_cache:
+          paths:
+            - ./local
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+
+      # lint and unittest
+      - run:
+          name: Check
+          command: |
+            source local/bin/activate
+            make lint unittest
+
+      # build
+      - run:
+          name: Build
+          command: |
+            source local/bin/activate
+            echo make upload
+
+      # deploy staging
+      - run:
+          name: Deploy Staging
+          command: |
+            source local/bin/activate
+            echo make deploy ENV=staging
+
+      # test staging
+      - run:
+          name: Test Staging
+          command: |
+              make test ENV=staging
+
+      # deploy production
+      - run:
+          name: Deploy Production
+          command: |
+            source local/bin/activate
+            echo make deploy ENV=production
+
+      # test production
+      - run:
+          name: Test Production
+          command: |
+            make test ENV=production
