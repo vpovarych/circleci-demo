@@ -1,8 +1,8 @@
 #!/bin/bash -e
-application=target-app
-bucket=cakedisk-api
+application=${1:-target-app}
+bucket=${2:-${1}-bundles}
 tag=$(date +%F)-$(git rev-parse --short HEAD)
-bundle=bundle-${tag}.zip
+bundle=${1}-${tag}.zip
 
 git archive HEAD -o /tmp/${bundle}
 
