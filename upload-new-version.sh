@@ -1,6 +1,6 @@
 #!/bin/bash -e
 application=${1:-target-app}
-bucket=${2:-${application}-targe-app-bundles}
+bucket=${2:-${application}-bundles}
 tag=$(date +%F)-$(git rev-parse --short HEAD)
 bundle=${application}-${tag}.zip
 
