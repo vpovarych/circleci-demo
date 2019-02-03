@@ -4,7 +4,7 @@ bucket=${2:-${application}-bundles}
 tag=$(date +%F)-$(git rev-parse --short HEAD)
 bundle=${application}-${tag}.zip
 
-check_version=$(aws elasticbeanstalk describe-application-versions --application-name target-app --version-label $tag --query "ApplicationVersions[0]")
+check_version=$(aws elasticbeanstalk describe-application-versions --application-name ${application} --version-label ${tag} --query "ApplicationVersions[0]")
 
 if [ "${check_version}" = "null" ];
 then
