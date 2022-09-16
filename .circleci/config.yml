@@ -2,7 +2,7 @@ version: 2
 jobs:
   Requirements:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
 
     working_directory: ~/repo
 
@@ -30,7 +30,7 @@ jobs:
 
   Check:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
 
     working_directory: ~/repo
 
@@ -52,7 +52,7 @@ jobs:
 
   Build:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
 
     working_directory: ~/repo
 
@@ -74,7 +74,7 @@ jobs:
 
   Deploy-Staging:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
 
     working_directory: ~/repo
 
@@ -97,7 +97,7 @@ jobs:
 
   Test-Staging:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
 
     working_directory: ~/repo
 
@@ -119,7 +119,7 @@ jobs:
 
   Deploy-Production:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
 
     working_directory: ~/repo
 
@@ -142,7 +142,7 @@ jobs:
 
   Test-Production:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
 
     working_directory: ~/repo
 
