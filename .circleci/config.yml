@@ -50,6 +50,7 @@ jobs:
           command: |
             pwd
             ls -la
+            mkdir ~/repo/local
             source ~/repo/local/bin/activate
             make lint unittest
 
