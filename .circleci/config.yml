@@ -2,7 +2,7 @@ version: 2
 jobs:
   Requirements:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.6.1
 
     working_directory: ~/repo
 
@@ -19,9 +19,8 @@ jobs:
       - run:
           name: Requirements
           command: |
-            mkdir ~/repo/local
             python3 -m venv local
-            source ./local/bin/activate
+            source local/bin/activate
             pip install --upgrade --requirement requirements.txt
 
       - save_cache:
@@ -31,7 +30,7 @@ jobs:
 
   Check:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.6.1
 
     working_directory: ~/repo
 
@@ -48,15 +47,12 @@ jobs:
       - run:
           name: Check
           command: |
-            pwd
-            ls -la
-            mkdir ~/repo/local
-            source ~/repo/local/bin/activate
+            source local/bin/activate
             make lint unittest
 
   Build:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.6.1
 
     working_directory: ~/repo
 
@@ -73,12 +69,12 @@ jobs:
       - run:
           name: Build
           command: |
-            source ./local/bin/activate
+            source local/bin/activate
             make upload
 
   Deploy-Staging:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.6.1
 
     working_directory: ~/repo
 
@@ -96,12 +92,12 @@ jobs:
       - run:
           name: Deploy Staging
           command: |
-            source ./local/bin/activate
+            source local/bin/activate
             make deploy ENV=staging
 
   Test-Staging:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.6.1
 
     working_directory: ~/repo
 
@@ -123,7 +119,7 @@ jobs:
 
   Deploy-Production:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.6.1
 
     working_directory: ~/repo
 
@@ -141,12 +137,12 @@ jobs:
       - run:
           name: Deploy Production
           command: |
-            source ./local/bin/activate
+            source local/bin/activate
             make deploy ENV=production
 
   Test-Production:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.6.1
 
     working_directory: ~/repo
 
