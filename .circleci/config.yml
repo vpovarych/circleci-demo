@@ -19,8 +19,8 @@ jobs:
       - run:
           name: Requirements
           command: |
-            mkdir local
-            python3 -m venv local
+            mkdir ~/repo/local
+            python3 -m venv ~/repo/local
             source ./local/bin/activate
             pip install --upgrade --requirement requirements.txt
 
@@ -48,7 +48,7 @@ jobs:
       - run:
           name: Check
           command: |
-            source ./local/bin/activate
+            source ~/repo/local/bin/activate
             make lint unittest
 
   Build:
